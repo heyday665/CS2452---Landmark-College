@@ -1,0 +1,4 @@
+Usage for Client.class
+	"java Client <port> <ip address>"
+Usage for ClientServer.class
+	"java ClientServer <port>"
