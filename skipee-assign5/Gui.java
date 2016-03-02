@@ -5,7 +5,7 @@ import java.awt.event.*;
 public class Gui extends JFrame implements Actionlistener {
 	static JFrame everything;
 	static JPanel pan;
-	static JLabel text1, text2;
+	static JLabel text1, text2, timr;
 	static JTextField box1, box2;
 	static Timer tim;
 	static JButton btn1, btn2;
@@ -13,6 +13,7 @@ public class Gui extends JFrame implements Actionlistener {
 
 	int sec, min, hour;
 	sec = 0; min = 0; hour = 0;
+	boolean connected = 0;
 
 	public Gui() {
 		pan = new JPanel(new GridLayout(4,2))
@@ -28,7 +29,8 @@ public class Gui extends JFrame implements Actionlistener {
 		btn2 = new JButton("Disconnnect");
 		btn2.addActionListener(this);
 		btn2.setActionCommand("discbutton");
-		timer = new Timer(1000, this);
+		timr = new JLabel("");
+		tim = new Timer(1000, this);
 		vol = new JSlider();
 
 		this.add(text1);
@@ -43,15 +45,18 @@ public class Gui extends JFrame implements Actionlistener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().compareTo("timer")==0){
-			sec++;
-			if (sec==60){
-				min++;
-				sec=0;
+			if (connected){
+				sec++;
+				if (sec==60){
+					min++;
+					sec=0;
+				}
+				if (min==60){
+					hour++;
+					min=0;
+				}
 			}
-			if (min==60){
-				hour++;
-				min=0;
-			}
+			timr.setText(hour + ":" + min + ":" + sec);
 		}
 		if (e.getActionCommand().compareTo("connbutton")==0){
 			//Connect
