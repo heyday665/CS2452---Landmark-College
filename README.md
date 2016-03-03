@@ -11,3 +11,5 @@
 #     -threading-assign3: An improvement off of assign2, implementing threading to allow for both reading and writing to the socket at 'the same time'.
 
 #     -producerconsumer: A successful attempt at mitigating the effects of the 'producers / consumers' synchronization problem with the use of Semaphores.
+
+#     -skipee-assign5: A voice chat program similar to Skype, with a GUI. Written with the help of SWING for Java.
