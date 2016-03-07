@@ -8,16 +8,20 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Gui extends JFrame implements ActionListener {
-	static JFrame everything;		//
-	static JPanel pan;			// Static Declaration
-	static JLabel text1, text2, timr;	// of GUI Components
-	static JTextField box1, box2;		//  needed for this 
-	static Timer tim;			//      program
-	static JButton btn1, btn2;		//
-	static JSlider vol;			//
+	static JFrame 		everything;			//
+	static JPanel 		guiPanel;			//    Declaration
+	static JLabel 		Label_IPAddress;		//
+	static JLabel 		Label_Port;			//
+	static JLabel 		Label_callTime;			// of GUI Components
+	static JTextField 	Box_IPAddress;			//
+	static JTextField 	Box_Port;			//  needed for this 
+	static Timer 		callTime;			//      program
+	static JButton 		Button_Connect;			//
+	static JButton 		Button_Disconnect;		//
+	static JSlider 		volumeSlider;			//
 
-	int secs, mins, hours;			// Declaration of various
-	boolean connected;			// variables used in components
+	int secs, mins, hours;					// Declaration of various
+	boolean connected;					// variables used in components
 
 	public Gui() {
 		//Initializing the variables declared above
@@ -25,36 +29,39 @@ public class Gui extends JFrame implements ActionListener {
 		mins = 0;
 		hours = 0;
 		connected = false;
-		pan = new JPanel(new GridLayout(4,2));
-		this.add(pan);
+		guiPanel = new JPanel(new GridLayout(4,2));
+		this.add(guiPanel);
+		this.setTitle("Skipee");
 		
 		//Initializing the components + JPanel to what we want
-		text1 = new JLabel("IP Address: ");
-		text2 = new JLabel("Port: ");
-		box1 = new JTextField(1);
-		box2 = new JTextField(1);
-		btn1 = new JButton("Connect");
-		btn1.addActionListener(this);
-		btn1.setActionCommand("connbutton");
-		btn2 = new JButton("Disconnnect");
-		btn2.addActionListener(this);
-		btn2.setActionCommand("discbutton");
-		timr = new JLabel("");
-		tim = new Timer(1000, this);
-		vol = new JSlider();
+		Label_IPAddress	= new JLabel("IP Address: ");
+		Label_Port	= new JLabel("Port: ");
+		Box_IPAddress	= new JTextField(1);
+		Box_Port	= new JTextField(1);
+
+		Button_Connect	= new JButton("Connect");
+		Button_Connect.addActionListener(this);
+		Button_Connect.setActionCommand("connbutton");
+		Button_Disconnect = new JButton("Disconnnect");
+		Button_Disconnect.addActionListener(this);
+		Button_Disconnect.setActionCommand("disconnbutton");
+
+		Label_callTime 	= new JLabel("");
+		callTime 	= new Timer(1000, this);
+		volumeSlider	= new JSlider();
 		
 		//Adding the components to the JPanel
-		pan.add(text1);
-		pan.add(box1);
-		pan.add(text2);
-		pan.add(box2);
-		pan.add(btn1);
-		pan.add(btn2);
-		pan.add(timr);
-		pan.add(vol);
+		guiPanel.add(Label_IPAddress);
+		guiPanel.add(Box_IPAddress);
+		guiPanel.add(Label_Port);
+		guiPanel.add(Box_Port);
+		guiPanel.add(Button_Connect);
+		guiPanel.add(Button_Disconnect);
+		guiPanel.add(Label_callTime);
+		guiPanel.add(volumeSlider);
 		
 		//Starting the timer
-		tim.start();
+		callTime.start();
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -70,12 +77,12 @@ public class Gui extends JFrame implements ActionListener {
 					mins=0;				// Reset minutes to 0
 				}
 			}
-			timr.setText(hours + ":" + mins + ":" + secs);	// Set the timr label's text
+			Label_callTime.setText(hours + ":" + mins + ":" + secs);	// Set the timr label's text
 		}
 		if (e.getActionCommand().compareTo("connbutton")==0){	//If the action event is for the connect button,
 			//Connect					// Well... Not done yet...
 		}
-		if (e.getActionCommand().compareTo("discbutton")==0){	//If the action event is for the disconnect button,
+		if (e.getActionCommand().compareTo("disconnbutton")==0){//If the action event is for the disconnect button,
 			//Disconnect					// Ooh, this is embarassing... Do this too...
 		}
 	}
