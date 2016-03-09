@@ -49,6 +49,11 @@ public class Gui extends JFrame implements ActionListener {
 		Label_callTime 	= new JLabel("");
 		callTime 	= new Timer(1000, this);
 		volumeSlider	= new JSlider();
+		volumeSlider.setMinorTickSpacing(5);
+		volumeSlider.setMajorTickSpacing(25);
+		volumeSlider.createStandardLabels(25);
+		volumeSlider.setPaintLabels(true);
+		volumeSlider.setSnapToTicks(true);
 		
 		//Adding the components to the JPanel
 		guiPanel.add(Label_IPAddress);
