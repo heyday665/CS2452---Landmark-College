@@ -54,7 +54,8 @@ public class Gui extends JFrame implements ActionListener {
 		volumeSlider.createStandardLabels(25);
 		volumeSlider.setPaintLabels(true);
 		volumeSlider.setSnapToTicks(true);
-		
+		callTime.setActionCommand("timer");		
+
 		//Adding the components to the JPanel
 		guiPanel.add(Label_IPAddress);
 		guiPanel.add(Box_IPAddress);
