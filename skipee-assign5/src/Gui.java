@@ -46,7 +46,7 @@ public class Gui extends JFrame implements ActionListener {
 		Button_Disconnect.addActionListener(this);
 		Button_Disconnect.setActionCommand("disconnbutton");
 
-		Label_callTime 	= new JLabel("");
+		Label_callTime 	= new JLabel("", SwingConstants.CENTER);
 		callTime 	= new Timer(1000, this);
 		volumeSlider	= new JSlider();
 		volumeSlider.setMinorTickSpacing(5);
@@ -86,10 +86,29 @@ public class Gui extends JFrame implements ActionListener {
 			Label_callTime.setText(hours + ":" + mins + ":" + secs);	// Set the timr label's text
 		}
 		if (e.getActionCommand().compareTo("connbutton")==0){	//If the action event is for the connect button,
-			//Connect					// Well... Not done yet...
+			if (!connected) {
+				connected = true;
+				Button_Connect.setEnabled(false);
+				Button_Disconnect.setEnabled(true);
+				Box_IPAddress.setText("");
+				Box_Port.setText("");
+				//connect to other client
+			}
+			else {
+				//do nothing
+			}
+			secs = (mins = (hours = 0));
 		}
 		if (e.getActionCommand().compareTo("disconnbutton")==0){//If the action event is for the disconnect button,
-			//Disconnect					// Ooh, this is embarassing... Do this too...
+			if (connected) {
+				connected = false;
+				Button_Connect.setEnabled(true);
+				Button_Disconnect.setEnabled(false);
+				//disconnect from other client
+			}
+			else {
+				//do nothing
+			}
 		}
 	}
 }
