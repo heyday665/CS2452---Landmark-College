@@ -3,9 +3,13 @@
  *             Written by: Jack Dacey           *
 \* -------------------------------------------- */
 
+import java.io.*;
+import java.net.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.sound.sampled.*;
+import java.util.concurrent.Semaphore;
 
 public class Gui extends JFrame implements ActionListener {
 	static JFrame 		everything;			//
@@ -23,12 +27,20 @@ public class Gui extends JFrame implements ActionListener {
 	int secs, mins, hours;					// Declaration of various
 	boolean connected;					// variables used in components
 
-	public Gui() {
+	Semaphore flg1;
+	Socket clientSock;
+	int portNumber;
+	InetAddress ipAddr;
+
+	public Gui(boolean cs, Semaphore s1) {
 		//Initializing the variables declared above
 		secs = 0;
 		mins = 0;
 		hours = 0;
-		connected = false;
+		portNumber = 7658;
+		connected = cs;
+		flg1 = s1;
+		ipAddr = null;
 		guiPanel = new JPanel(new GridLayout(4,2));
 		this.add(guiPanel);
 		this.setTitle("Skipee");
@@ -84,15 +96,24 @@ public class Gui extends JFrame implements ActionListener {
 				}
 			}
 			Label_callTime.setText(hours + ":" + mins + ":" + secs);	// Set the timr label's text
+			if (connected) {Button_Connect.setEnabled(false); Button_Disconnect.setEnabled(true);}
+			if (!connected) {Button_Connect.setEnabled(true); Button_Disconnect.setEnabled(false);}
 		}
 		if (e.getActionCommand().compareTo("connbutton")==0){	//If the action event is for the connect button,
 			if (!connected) {
 				connected = true;
 				Button_Connect.setEnabled(false);
 				Button_Disconnect.setEnabled(true);
+				try{ipAddr = InetAddress.getByName(Box_IPAddress.getText());} catch(Exception e1) {e1.printStackTrace(System.out);}
 				Box_IPAddress.setText("");
 				Box_Port.setText("");
-				//connect to other client
+				
+				try{flg1.acquire();} catch(Exception e3) {e3.printStackTrace(System.out);}
+				if (!connected) {
+					try{clientSock = new Socket(ipAddr, portNumber);
+						CALL call = new CALL(clientSock);} catch (Exception e2) {e2.printStackTrace(System.out);}
+				}
+				flg1.release();
 			}
 			else {
 				//do nothing
