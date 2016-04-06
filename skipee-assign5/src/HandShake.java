@@ -25,14 +25,15 @@ public class HandShake implements Runnable {
 			try {
 				Socket sock;
 				sock = servSock.accept();
-				flg1.acquire();
+				//flg1.acquire();
 				if (connected) {
 					sock.close();
 				}
 				else {
+					connected = true;
 					CALL call = new CALL(sock);
 				}
-				flg1.release();
+				//flg1.release();
 			} catch (Exception e) {}
 		}
 	}

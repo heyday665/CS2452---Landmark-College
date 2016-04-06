@@ -18,6 +18,7 @@ public class CALL implements Runnable {
 	}
 
 	public void run(){
+		System.out.println("starting call thread");
 		MICCATCH miccatch = new MICCATCH(clientSock);
 		try {
 			final AudioFormat format = getFormat();
