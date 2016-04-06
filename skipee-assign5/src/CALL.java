@@ -13,7 +13,7 @@ public class CALL implements Runnable {
 
 	CALL(Socket s){
 		clientSock = s;
-		t = new Thread(this, "CallThread");
+		t = new Thread(this, "CALL");
 		t.start();
 	}
 

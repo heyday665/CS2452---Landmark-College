@@ -8,7 +8,7 @@ public class MICCATCH implements Runnable{
 
 	MICCATCH(Socket s){
 		clientSock = s;
-		t = new Thread(this, "MicThread");
+		t = new Thread(this, "MICCATCH");
 		t.start();
 	}
 	

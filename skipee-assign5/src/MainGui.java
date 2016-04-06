@@ -15,7 +15,8 @@ class MainGui {
 		try{ ServerSocket ss = new ServerSocket(7658);
 			boolean connstatus = false;
 			Semaphore flg1 = new Semaphore(1);
-	
+			
+			System.out.println("starting hs thread");
 			HandShake hs = new HandShake(ss, connstatus, flg1);		
 			JFrame everything = new Gui(connstatus, flg1);
 	
