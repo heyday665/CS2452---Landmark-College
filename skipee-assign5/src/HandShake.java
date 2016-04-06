@@ -26,7 +26,7 @@ public class HandShake implements Runnable {
 				Socket sock;
 				sock = servSock.accept();
 				System.out.println("got connection");
-				//flg1.acquire();
+				flg1.acquire();
 				if (connected) {
 					sock.close();
 				}
@@ -34,7 +34,7 @@ public class HandShake implements Runnable {
 					connected = true;
 					CALL call = new CALL(sock);
 				}
-				//flg1.release();
+				flg1.release();
 			} catch (Exception e) {}
 		}
 	}

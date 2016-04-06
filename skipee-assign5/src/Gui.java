@@ -101,10 +101,10 @@ public class Gui extends JFrame implements ActionListener {
 		}
 		if (e.getActionCommand().compareTo("connbutton")==0){	//If the action event is for the connect button,
 			if (!connected) {
-				connected = true;
 				Button_Connect.setEnabled(false);
 				Button_Disconnect.setEnabled(true);
 				try{ipAddr = InetAddress.getByName(Box_IPAddress.getText());} catch(Exception e1) {e1.printStackTrace(System.out);}
+
 				Box_IPAddress.setText("");
 				Box_Port.setText("");
 				
@@ -113,6 +113,7 @@ public class Gui extends JFrame implements ActionListener {
 					try{clientSock = new Socket(ipAddr, portNumber);
 						CALL call = new CALL(clientSock);} catch (Exception e2) {e2.printStackTrace(System.out);}
 				}
+				connected = true;
 				flg1.release();
 			}
 			else {
