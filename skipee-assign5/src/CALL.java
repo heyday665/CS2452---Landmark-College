@@ -13,6 +13,8 @@ public class CALL implements Runnable {
 
 	CALL(Socket s){
 		clientSock = s;
+		try{clientSock.setSendBufferSize(16);
+		clientSock.setReceiveBufferSize(16);} catch (Exception e){}
 		t = new Thread(this, "CALL");
 		t.start();
 	}
