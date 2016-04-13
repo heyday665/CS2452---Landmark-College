@@ -20,7 +20,7 @@ public class MICCATCH implements Runnable{
 			line.open(format);
 			line.start();
 
-			int bufferSize = 32;
+			int bufferSize = 16;
 			byte buffer[] = new byte[bufferSize];
 
 			BufferedOutputStream out = null;
