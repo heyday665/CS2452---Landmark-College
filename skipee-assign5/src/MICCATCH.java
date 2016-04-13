@@ -20,7 +20,7 @@ public class MICCATCH implements Runnable{
 			line.open(format);
 			line.start();
 
-			int bufferSize = 16;
+			int bufferSize = 32;
 			byte buffer[] = new byte[bufferSize];
 
 			BufferedOutputStream out = null;
@@ -36,7 +36,7 @@ public class MICCATCH implements Runnable{
 	}
 
 	static AudioFormat getFormat(){
-		float sampleRate = 16000;
+		float sampleRate = 8000;
 		int sampleSizeInBits = 8;
 		int channels = 1;
 		boolean signed = true;

@@ -43,7 +43,7 @@ public class CALL implements Runnable {
 	}
 
 	private AudioFormat getFormat() {
-		float sampleRate = 16000;
+		float sampleRate = 8000;
 		int sampleSizeInBits = 8;
 		int channels = 1;
 		boolean signed = true;
