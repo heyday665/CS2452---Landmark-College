@@ -13,8 +13,8 @@ public class CALL implements Runnable {
 
 	CALL(Socket s){
 		clientSock = s;
-		try{clientSock.setSendBufferSize(128);
-		clientSock.setReceiveBufferSize(256);} catch (Exception e){}
+		//try{clientSock.setSendBufferSize(128);
+		//clientSock.setReceiveBufferSize(256);} catch (Exception e){}
 		t = new Thread(this, "CALL");
 		t.start();
 	}
@@ -29,7 +29,8 @@ public class CALL implements Runnable {
 			line.open(format);
 			line.start();
 
-			int bufferSize = (int) format.getSampleRate() * format.getFrameSize();
+			//int bufferSize = (int) format.getSampleRate() * format.getFrameSize();
+			int bufferSize = 16;
 			byte buffer[] = new byte[bufferSize];
 
 			final AudioInputStream ais = new AudioInputStream(clientSock.getInputStream(), format, 2000000);
