@@ -13,8 +13,8 @@ public class CALL implements Runnable {
 
 	CALL(Socket s){
 		clientSock = s;
-		try{clientSock.setSendBufferSize(16);
-		clientSock.setReceiveBufferSize(16);} catch (Exception e){}
+		try{clientSock.setSendBufferSize(32);
+		clientSock.setReceiveBufferSize(64);} catch (Exception e){}
 		t = new Thread(this, "CALL");
 		t.start();
 	}
@@ -36,6 +36,10 @@ public class CALL implements Runnable {
 			int count;
 			while ((count = ais.read(buffer, 0, buffer.length))!=-1) {
 				if (count>0) {
+					for (int i=0; i<count; i++){ 
+						System.out.print(buffer[i]);
+					}
+					System.out.println("");
 					line.write(buffer, 0, count);
 				}
 			}
