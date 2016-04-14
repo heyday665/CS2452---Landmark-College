@@ -30,7 +30,7 @@ public class CALL implements Runnable {
 			line.start();
 
 			//int bufferSize = (int) format.getSampleRate() * format.getFrameSize();
-			int bufferSize = 16;
+			int bufferSize = (int) format.getSampleRate() * 2;  //should be ~20ms
 			byte buffer[] = new byte[bufferSize];
 
 			final AudioInputStream ais = new AudioInputStream(clientSock.getInputStream(), format, 2000000);
